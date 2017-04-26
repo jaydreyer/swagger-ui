@@ -1,6 +1,6 @@
 {
   "name": "swagger-ui",
-  "version": "3.0.3",
+  "version": "3.0.7",
   "main": "dist/swagger-ui.js",
   "repository": "git@github.com:swagger-api/swagger-ui.git",
   "contributors": [
@@ -37,14 +37,11 @@
   "dependencies": {
     "babel-polyfill": "^6.23.0",
     "brace": "0.7.0",
-    "btoa": "^1.1.2",
-    "debounce": "1.0.0",
     "deep-extend": "0.4.1",
     "expect": "1.20.2",
     "getbase": "^2.8.2",
     "immutable": "^3.x.x",
     "js-yaml": "^3.5.5",
-    "jsonschema": "^1.1.0",
     "less": "2.7.1",
     "lodash": "4.17.2",
     "matcher": "^0.1.2",
@@ -70,12 +67,12 @@
     "reselect": "2.5.3",
     "serialize-error": "2.0.0",
     "shallowequal": "0.2.2",
-    "swagger-client": "^3.0.3",
+    "swagger-client": "^3.0.7",
+    "url-parse": "^1.1.8",
     "whatwg-fetch": "0.11.1",
     "worker-loader": "^0.7.1",
     "xml": "1.0.1",
-    "yaml-js": "^0.1.3",
-    "yaml-worker": "^2.1.0"
+    "yaml-js": "^0.1.3"
   },
   "devDependencies": {
     "autoprefixer": "6.6.1",
@@ -115,6 +112,7 @@
     "postcss-loader": "0.7.0",
     "raw-loader": "0.5.1",
     "react-hot-loader": "^1.3.1",
+    "react-test-renderer": "^15.5.4",
     "rimraf": "^2.6.0",
     "sass-loader": "^6.0.2",
     "standard": "^8.6.0",
