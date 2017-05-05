@@ -21,8 +21,8 @@ export default class BaseLayout extends React.Component {
     let host = specSelectors.host()
     let securityDefinitions = specSelectors.securityDefinitions()
     let externalDocs = specSelectors.externalDocs()
+    let xapidefinition = specSelectors.xapidefinition()
     let schemes = specSelectors.schemes()
-
     let Info = getComponent("info")
     let Operations = getComponent("operations", true)
     let Models = getComponent("models", true)
@@ -46,7 +46,7 @@ export default class BaseLayout extends React.Component {
             <Row className="information-container">
               <Col mobile={12}>
                 { info.count() ? (
-                  <Info info={ info } url={ url } host={ host } basePath={ basePath } externalDocs={externalDocs} getComponent={getComponent}/>
+                  <Info xapidefinition={ xapidefinition } info={ info } url={ url } host={ host } basePath={ basePath } externalDocs={externalDocs} getComponent={getComponent}/>
                 ) : null }
               </Col>
             </Row>

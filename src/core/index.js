@@ -6,6 +6,9 @@ import * as AllPlugins from "core/plugins/all"
 import { filterConfigs } from "plugins/configs"
 import { parseSeach } from "core/utils"
 
+//There are better ways to save the state of the overview text but I can't get them to work.
+let overview = ""
+
 module.exports = function SwaggerUI(opts) {
 
   const defaults = {
@@ -15,6 +18,7 @@ module.exports = function SwaggerUI(opts) {
     url: "",
     layout: "BaseLayout",
     validatorUrl: "https://online.swagger.io/validator",
+    overview: "",
     configs: {
     },
 
@@ -67,6 +71,7 @@ module.exports = function SwaggerUI(opts) {
 
   var system = store.getSystem()
   let queryConfig = parseSeach()
+  overview = queryConfig.overview
 
   const downloadSpec = (fetchedConfig) => {
     if(typeof constructorConfig !== "object") {
@@ -93,6 +98,7 @@ module.exports = function SwaggerUI(opts) {
     } else {
       console.error("Skipped rendering: no `dom_id` was specified")
     }
+
 
     return system
   }

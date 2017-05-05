@@ -53,6 +53,11 @@ export const info = createSelector(
 	spec => returnSelfOrNewMap(spec && spec.get("info"))
 )
 
+export const xapidefinition = createSelector(
+  spec,
+	spec => returnSelfOrNewMap(spec && spec.get("x-api-definition"))
+)
+
 export const externalDocs = createSelector(
   spec,
 	spec => returnSelfOrNewMap(spec && spec.get("externalDocs"))
