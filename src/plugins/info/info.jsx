@@ -153,7 +153,7 @@ export default class Info extends React.Component {
     let endpoints = xapidefinition.get("endpoints")
     let external_hosts = endpoints.get("external") || null
     let internal_hosts = endpoints.get("internal") || null
-    let overviewMarkdownFile = overview
+    let overviewMarkdownFile = overview || null
     let classification = xapidefinition.get("overall_data_classification")
     const { url:externalDocsUrl, description:externalDocsDescription } = (externalDocs || fromJS({})).toJS()
     const Markdown = getComponent("Markdown")
@@ -186,9 +186,11 @@ export default class Info extends React.Component {
         { externalDocsUrl ?
             <a target="_blank" href={externalDocsUrl}>{externalDocsDescription || externalDocsUrl}</a>
         : null }
+        { overviewMarkdownFile ?
             <div className="overview">
               <Markdown container={"div"} options={{html: true, typographer: true, breaks: true, linkify: true, linkTarget: "_blank"}} source={ overviewMarkdownFile } />
             </div>
+          : null }
         </div>
 
 

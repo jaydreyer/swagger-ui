@@ -5,6 +5,7 @@ import ApisPreset from "core/presets/apis"
 import * as AllPlugins from "core/plugins/all"
 import { filterConfigs } from "plugins/configs"
 import { parseSeach } from "core/utils"
+import info from "plugins/info"
 
 //There are better ways to save the state of the overview text but I can't get them to work.
 let overview = ""
@@ -29,6 +30,7 @@ module.exports = function SwaggerUI(opts) {
 
     // Plugins; ( loaded after presets )
     plugins: [
+      info
     ],
 
     // Inline Plugin
