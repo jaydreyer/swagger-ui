@@ -1,16 +1,27 @@
 import deepExtend from "deep-extend"
 
 import System from "core/system"
+import win from "core/window"
 import ApisPreset from "core/presets/apis"
 import * as AllPlugins from "core/plugins/all"
 import { filterConfigs } from "plugins/configs"
-import { parseSeach } from "core/utils"
+import { parseSeach, filterConfigs } from "core/utils"
 import info from "plugins/info"
 
 //There are better ways to save the state of the overview text but I can't get them to work.
 let overview = ""
 
+const CONFIGS = [ "url", "spec", "validatorUrl", "onComplete", "onFailure", "authorizations", "docExpansion",
+    "apisSorter", "operationsSorter", "supportedSubmitMethods", "highlightSizeThreshold", "dom_id",
+    "defaultModelRendering", "oauth2RedirectUrl", "showRequestHeaders" ]
+
+// eslint-disable-next-line no-undef
+const { GIT_DIRTY, GIT_COMMIT, PACKAGE_VERSION } = buildInfo
+
 module.exports = function SwaggerUI(opts) {
+
+  win.versions = win.versions || {}
+  win.versions.swaggerUi = `${PACKAGE_VERSION}/${GIT_COMMIT || "unknown"}${GIT_DIRTY ? "-dirty" : ""}`
 
   const defaults = {
     // Some general settings, that we floated to the top
@@ -75,14 +86,16 @@ module.exports = function SwaggerUI(opts) {
   let queryConfig = parseSeach()
   overview = queryConfig.overview
 
+  system.initOAuth = system.authActions.configureAuth
+
   const downloadSpec = (fetchedConfig) => {
     if(typeof constructorConfig !== "object") {
       return system
     }
 
     let localConfig = system.specSelectors.getLocalConfig ? system.specSelectors.getLocalConfig() : {}
-    let mergedConfig = deepExtend({}, constructorConfig, localConfig, fetchedConfig || {}, queryConfig)
-    store.setConfigs(filterConfigs(mergedConfig))
+    let mergedConfig = deepExtend({}, localConfig, constructorConfig, fetchedConfig || {}, queryConfig)
+    store.setConfigs(filterConfigs(mergedConfig, CONFIGS))
 
     if (fetchedConfig !== null) {
       if (!queryConfig.url && typeof mergedConfig.spec === "object" && Object.keys(mergedConfig.spec).length) {

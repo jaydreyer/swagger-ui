@@ -1,5 +1,4 @@
 import Im from "immutable"
-import assign from "object-assign"
 import shallowEqual from "shallowequal"
 
 import camelCase from "lodash/camelCase"
@@ -85,7 +84,7 @@ export function objReduce(obj, fn) {
   return Object.keys(obj).reduce((newObj, key) => {
     let res = fn(obj[key], key)
     if(res && typeof res === "object")
-      assign(newObj, res)
+      Object.assign(newObj, res)
     return newObj
   }, {})
 }
@@ -577,4 +576,16 @@ export const buildFormData = (data) => {
     }
   }
   return formArr.join("&")
+}
+
+export const filterConfigs = (configs, allowed) => {
+    let i, filteredConfigs = {}
+
+    for (i in configs) {
+        if (allowed.indexOf(i) !== -1) {
+            filteredConfigs[i] = configs[i]
+        }
+    }
+
+    return filteredConfigs
 }
