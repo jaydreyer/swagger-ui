@@ -4,7 +4,6 @@ import System from "core/system"
 import win from "core/window"
 import ApisPreset from "core/presets/apis"
 import * as AllPlugins from "core/plugins/all"
-import { filterConfigs } from "plugins/configs"
 import { parseSeach, filterConfigs } from "core/utils"
 import info from "plugins/info"
 

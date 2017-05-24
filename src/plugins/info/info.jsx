@@ -148,8 +148,11 @@ export default class Info extends React.Component {
     let api_name = xapidefinition.get("api_name")
     let termsOfService = info.get("termsOfService")
     let contact = info.get("contact")
+    let links = xapidefinition.get("links")
+    let support_contact = links.get("support_team_contact")
     let license = info.get("license")
     let lifecycle_status = xapidefinition.get("lifecycle_status")
+    let api_type = xapidefinition.get("api_type")
     let endpoints = xapidefinition.get("endpoints")
     let external_hosts = endpoints.get("external") || null
     let internal_hosts = endpoints.get("internal") || null
@@ -166,6 +169,8 @@ export default class Info extends React.Component {
           </h2>
           <h4>Lifecycle Status: { lifecycle_status }</h4>
           { classification && <h4>Data Classification: { classification } </h4> }
+          { api_type && <h4>API Type: { api_type } </h4> }
+          { support_contact && <h4>Support Contact: {support_contact} </h4> }
           { host || basePath ? <Path host={ host } basePath={ basePath } /> : null }
           { url && <a target="_blank" href={ url }><span className="url"> { url } </span></a> }
         </hgroup>
@@ -179,8 +184,10 @@ export default class Info extends React.Component {
           </div>
         }
 
+        {/* Replacing contact with support_team_contact above
         { contact && contact.size ? <Contact data={ contact } /> : null }
-        { license && license.size ? <License license={ license } /> : null }
+          License isn't valid for Target. Commenting out.
+        { license && license.size ? <License license={ license } /> : null } */}
         { external_hosts && <ExternalHosts external_hosts = { external_hosts } /> }
         { internal_hosts && <InternalHosts internal_hosts = { internal_hosts } /> }
         { externalDocsUrl ?
